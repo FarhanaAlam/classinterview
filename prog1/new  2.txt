@@ -1,0 +1,6 @@
+
+<a href="https://signin.ebay.com/ws/eBayISAPI.dll?SignIn&amp;ru=https%3A%2F%2Fwww.ebay.com%2F" _sp="m570.l1524">Sign in</a>
+SignIn
+	//*[@id='gh-ug']/a
+Register
+	//*[@id='gh-ug-flex']/a

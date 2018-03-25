@@ -1,0 +1,157 @@
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+
+public class frameworkfunctions {
+	
+	// =================================================================================================
+	//                 Getting the Input Values from Properties 
+	//  ================================================================================================
+	
+	public static String GetInputInfo( String Filenm) throws IOException
+    {
+		
+		
+     Properties  prop = new Properties();
+    
+     FileInputStream input = new FileInputStream(Filenm);
+     prop.load(input);
+     String puserid=prop.getProperty("userid");
+     String ppassword=prop.getProperty("password");
+     String ph1=prop.getProperty("H1");
+     String purl=prop.getProperty("url");
+     String stno=prop.getProperty("stid");
+     String stnm=prop.getProperty("stnm");
+     String Title=prop.getProperty("Title");
+     String retrec=puserid + "," + ppassword + "," + ph1  + "," + purl + "," + Title ;
+     return retrec;
+     
+       }
+	// =================================================================================================
+		//                Calling URL
+		//  ================================================================================================
+
+	
+	
+	public static WebDriver  invokeandverifyurl(String url,String exph1value)
+	{
+		
+		
+		System.out.println("Internet Explorer is selected");
+		System.setProperty("webdriver.ie.driver","C:\\classinterview\\IEDriverServer.exe\\");
+		WebDriver driver = new InternetExplorerDriver();
+		driver.get(url);
+		String acth1value = driver.findElement(By.xpath("//h1")).getText(); 
+		System.out.println("h1value=" + acth1value);
+		boolean result=compareString (acth1value,exph1value);
+		System.out.println("result=" + result);
+		//if (!result)
+			
+			//writereport(Msg);
+		//return driver;
+		return driver;
+		
+	} 
+	// =================================================================================================
+	//               compare Two String Values
+	//  ================================================================================================
+	
+	public static boolean  compareString(String str1,String str2)
+	{
+	
+		
+		System.out.println(str1 + "=" + str1.length() +"="  + str2 + "=" + str2.length());
+		
+		if (str1.equalsIgnoreCase(str2 ) )
+			return true;
+		else
+			return false;
+		
+	}
+	
+	// =================================================================================================
+	//              ReadDb
+	//  ================================================================================================
+
+
+
+=============================================================
+
+package aa;
+
+import org.junit.runner.RunWith;
+import cucumber.api.junit.Cucumber;
+
+import org.junit.runner.RunWith;
+
+import cucumber.api.CucumberOptions;
+
+@RunWith(Cucumber.class)
+
+@CucumberOptions(
+		
+		features = "src/test/resources/project.feature"
+		,glue={"aa"}
+		)
+
+public class projectrunner {
+}
+
+
+=======================================================================
+
+Feature:  Add Student 
+
+Scenario Outline:
+
+Given the Config file "config.properties"
+ Given I am in "http://localhost:8081/FTF/student.html"  page 
+ When I type "<stno>""<stnm>""<ststatus>""<stjoindt>"
+ And click on Process button
+ Then it should add only Active and 2018 Students
+ 
+Examples:
+
+|stno|stnm |ststatus |stjoindt |
+|001 |John1|A       | 11-jan-18|
+|002 |John2|A       | 11-jan-17|
+|003 |John3|O       | 11-jan-18|
+|004 |John4|A       | 11-jan-18|
+|005 |John5|O       | 11-jan-16|
+
+
+
+=========================================================
+Feature:  Add Student 
+
+Scenario Outline:
+
+Given the Config file "config.properties"
+ Given I am in "http://localhost:8081/FTF/student.html"  page 
+ When I type "<stno>""<stnm>""<ststatus>""<stjoindt>"
+ And click on Process button
+ Then it should add only Active and 2018 Students
+ 
+Examples:
+
+|stno|stnm |ststatus |stjoindt |
+|001 |John1|A       | 11-jan-18|
+|002 |John2|A       | 11-jan-17|
+|003 |John3|O       | 11-jan-18|
+|004 |John4|A       | 11-jan-18|
+|005 |John5|O       | 11-jan-16|
+
+Attachments 

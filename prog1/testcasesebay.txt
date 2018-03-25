@@ -1,0 +1,11 @@
+Test Cases
+1-verify that user is able to navigate through all the products across diffrent categories
+2-verify that all the links and banners are redirecting to correct product pages 
+3-verify that correct count of total products are listed on the category pages
+4-verify that all the text-poduct,category,name,price and product description are clearly visible
+5-verify that all the images,product and banner are clearly visible
+6-verify that on searching all the product satisfying the search criteria are visible on the search result page
+7-verify that on the product page, user can select the desired attribute of the product  like size,color etc.
+8-verify that user can add to cart one or more products
+9-verify that user can buy proucts added to cart after signing to the application
+10-verify that user can successfully buy more than one products that were added to his cart

@@ -1,0 +1,228 @@
+Microsoft Windows [Version 6.3.9600]
+(c) 2013 Microsoft Corporation. All rights reserved.
+
+C:\Windows\System32>
+C:\Windows\System32>Cd\
+
+C:\>Cd classinterview
+
+C:\classinterview>Sqlplus / as sysdba
+
+SQL*Plus: Release 11.2.0.1.0 Production on Sat Dec 30 12:55:06 2017
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+ERROR:
+ORA-01031: insufficient privileges
+
+
+Enter user-name: sys as sysdba
+Enter password:
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.1.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+SQL> spool prog1
+SQL> set echo on
+SQL> connect project/project
+Connected.
+SQL> CREATE VIEW v1 AS SELECT cust_no,cust_nm FROM customers_1;
+
+View created.
+
+SQL> SELECT * FROM v1;
+
+   CUST_NO CUST_NM
+---------- ------------------------------
+       101 john
+       102 nancy
+       103 Rabeca
+       104 robert
+
+SQL> CREATE VIEW v2 AS SELECT cust_nm, order_desc FROM customers_1 INNER JOIN orders_1 ON customers_1.cust_no= orders_1.cust_nm;
+CREATE VIEW v2 AS SELECT cust_nm, order_desc FROM customers_1 INNER JOIN orders_1 ON customers_1.cust_no= orders_1.cust_nm
+                                                                                                          *
+ERROR at line 1:
+ORA-00904: "ORDERS_1"."CUST_NM": invalid identifier
+
+
+SQL> CREATE VIEW v2 AS SELECT cust_nm, order_desc FROM customers_1 INNER JOIN orders_1 ON customers_1.cust_no= orders_1.cust_no;
+
+View created.
+
+SQL> SELECT * FROM v2;
+
+no rows selected
+
+SQL> SELECT cust_nm,order_desc FROM customers_1 INNER JOIN orders_1 ON customers_1.cust_no= orders_1.cust_1;
+SELECT cust_nm,order_desc FROM customers_1 INNER JOIN orders_1 ON customers_1.cust_no= orders_1.cust_1
+                                                                                       *
+ERROR at line 1:
+ORA-00904: "ORDERS_1"."CUST_1": invalid identifier
+
+
+SQL> SELECT cust_nm,order_desc FROM customers_1 INNER JOIN orders_1 ON customers_1.cust_no= orders_1.cust_no;
+
+no rows selected
+
+SQL> SELECT cust_nm,order_desc FROM customers_1 INNER JOIN orders_1 ON customers_1.cust_no= orders_1.cust_no;
+
+no rows selected
+
+SQL>
+SQL> SELECT cust_nm,order_desc FROM customers_1 full outer join  orders_1 ON orders_1.cust_no = customers_1.cust_no;
+
+CUST_NM                        ORDER_DESC
+------------------------------ ------------------------------
+                               cd
+                               printer
+                               printer
+                               cd
+                               printer
+Rabeca
+nancy
+john
+robert
+
+9 rows selected.
+
+SQL> CREATE table Cust_test AS SELECT * FROM customers_1 WHERE substr(cust_phno,1,3)='212';
+
+Table created.
+
+SQL> CREATE table Cust_test AS SELECT * FROM customers_1 ;
+CREATE table Cust_test AS SELECT * FROM customers_1
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+SQL> CREATE table cust_test AS SELECT * FROM customers_1 ;
+CREATE table cust_test AS SELECT * FROM customers_1
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+SQL> CREATE table Cust_test AS SELECT * FROM customers_1 WHERE cust_phno LIKE '212%';
+CREATE table Cust_test AS SELECT * FROM customers_1 WHERE cust_phno LIKE '212%'
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+SQL> DESCRIBE cust_test;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CUST_NO                                            NUMBER(38)
+ CUST_NM                                            VARCHAR2(30)
+ CUST_PHNO                                          CHAR(10)
+ CUST_JOIN_DT                                       DATE
+
+SQL> DESCRIBE customers_1;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CUST_NO                                   NOT NULL NUMBER(38)
+ CUST_NM                                            VARCHAR2(30)
+ CUST_PHNO                                          CHAR(10)
+ CUST_JOIN_DT                                       DATE
+
+SQL> SELECT * FROM customers_1 UNION SELECT * FROM cust_test;
+
+   CUST_NO CUST_NM                        CUST_PHNO  CUST_JOIN
+---------- ------------------------------ ---------- ---------
+       101 john                           2127651234 11-JAN-17
+       102 nancy                          7187651234 12-JAN-17
+       103 Rabeca                         2127651236 11-JAN-17
+       104 robert                         2127651237 11-FEB-17
+
+SQL> SELECT * FROM customers_1 UNION ALL SELECT * FROM cust_test;
+
+   CUST_NO CUST_NM                        CUST_PHNO  CUST_JOIN
+---------- ------------------------------ ---------- ---------
+       101 john                           2127651234 11-JAN-17
+       102 nancy                          7187651234 12-JAN-17
+       103 Rabeca                         2127651236 11-JAN-17
+       104 robert                         2127651237 11-FEB-17
+       101 john                           2127651234 11-JAN-17
+       103 Rabeca                         2127651236 11-JAN-17
+       104 robert                         2127651237 11-FEB-17
+
+7 rows selected.
+
+SQL> SELECT * FROM dual;
+
+D
+-
+X
+
+SQL> SELECT sysdate FROM dual;
+
+SYSDATE
+---------
+30-DEC-17
+
+SQL> SELECT to_char(sysdate,'mm/dd/yy')FROM dual;
+
+TO_CHAR(
+--------
+12/30/17
+
+SQL> SELECT substr(0
+  2  SELECT substr(cust_phno,1,3), COUNT(*) FROM customers_1 WHERE cust_no>2 GROUP BY substr(cust_phno,1,3 ) HAVING COUNT (*)>2 ORDER BY COUNT (*)desc;
+SELECT substr(cust_phno,1,3), COUNT(*) FROM customers_1 WHERE cust_no>2 GROUP BY substr(cust_phno,1,3 ) HAVING COUNT (*)>2 ORDER BY COUNT (*)desc
+*
+ERROR at line 2:
+ORA-00907: missing right parenthesis
+
+
+SQL> SELECT substr(cust_phno,1,3), COUNT (*) FROM customers_1 WHERE cust_no > 2 GROUP BY substr(cust_phno,1,3 ) HAVING COUNT (*) > 2 ORDER BY COUNT (*) desc;
+
+SUB   COUNT(*)
+--- ----------
+212          3
+
+SQL> ALTER table customers_1 ADD (cust_loc char(2),cust_gender char(1));
+
+Table altered.
+
+SQL> CREATE Procedure Get_cust_rec(cust_number IN customer_1.cust_no%TYPE)
+  2  AS
+  3  pcustnm varchar2(30);
+  4  BEGIN
+  5  SELECT cust_nm
+  6  INTO pcustnm
+  7  FROM customer_1
+  8  WHERE cust_no = cust_number;
+  9  dbms_output.put_line ('cust_nm=' + pcustnm);
+ 10  END;
+ 11  /
+
+Warning: Procedure created with compilation errors.
+
+SQL> describe customers_1;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CUST_NO                                   NOT NULL NUMBER(38)
+ CUST_NM                                            VARCHAR2(30)
+ CUST_PHNO                                          CHAR(10)
+ CUST_JOIN_DT                                       DATE
+ CUST_LOC                                           CHAR(2)
+ CUST_GENDER                                        CHAR(1)
+
+SQL> SELECT * FROM customers_1;
+
+   CUST_NO CUST_NM                        CUST_PHNO  CUST_JOIN CU C
+---------- ------------------------------ ---------- --------- -- -
+       101 john                           2127651234 11-JAN-17
+       102 nancy                          7187651234 12-JAN-17
+       103 Rabeca                         2127651236 11-JAN-17
+       104 robert                         2127651237 11-FEB-17
+
+SQL> spool off
+SQL> ^Zpool off
+
+
+
+

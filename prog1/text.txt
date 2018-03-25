@@ -1,0 +1,13 @@
+names.dat
+
+001,john,20
+002,Nancy,20
+003,nancy2,30
+004,john2,10
+
+
+
+split the rec with , delimiter 
+if  age=30 age30=age30 + 1
+if  age=20 age20=age20 + 1
+if  age=10 age10=age10 + 1

@@ -1,0 +1,29 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class textfile {
+
+	public static void main(String[] args) throws IOException 
+	{
+		
+		readtext();
+	}
+	public static void readtext() throws IOException
+	
+	{
+		
+		String filename ="C:\\Users\\ABC\\Desktop\\record.txt";
+		FileReader myfilereader = new FileReader(filename);
+		
+		BufferedReader mybufferedreader = new BufferedReader(myfilereader);
+		String line = null;
+		
+		while((line = mybufferedreader.readLine())!=null)
+		{
+		System.out.println(line);
+		}
+		
+		mybufferedreader.close();
+	}

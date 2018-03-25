@@ -1,0 +1,76 @@
+
+TABLE:
+CREATE TABLE Subscriber (emp_fNM vaechar2(30),emp_lNM varchar2(30), Address varchar2(50), 
+DOB date not null primary key,gender char(10), marital_status char(10),emp_dependentsvarchar2(20));
+
+INSERT INTO Subscriber VALUES('jhon','smith','111 julia circle,dix hills,nY11746,usa',01-02-1963,'M','M','emp');
+INSERT INTO Subscriber VALUES('nancy','smith','111 julia circle,dix hills,nY11746,usa',02-04-1973,'F','M','dep');
+INSERT INTO Subscriber VALUES('robert','smith','111 julia circle,dix hills,nY11746,usa',05-02-1998,'M','SINGLE','dep');
+INSERT INTO Subscriber VALUES('mac','smith','111 julia circle,dix hills,nY11746,usa',01-06-2000,'M','CHILD','dep');
+INSERT INTO Subscriber VALUES('rebeca','smith','111 julia circle,dix hills,nY11746,usa',01-05-2008,'F','CHILD','dep');
+
+
+____________________________________________________________________________________________________________________________________
+
+MOCK.data
+
+INS*Y*18*030*XN*A*E**FT~
+REF*OF*152239999~
+REF*1L*Blue~
+DTP*336*D8*20070101~
+NM1*IL*1*jhon*smith****34*152239999~
+N3*111*juliacircle~
+N4*dixhills*ny*11746*USA~
+DMG*D8*19630102*M*M~
+HD*030**VIS**EMP~
+DTP*348*D8*20111016~
+
+
+INS*N*01*030*XN*A*E**FT~
+REF*OF*152239999~
+REF*1L*Blue~
+DTP*336*D8*20070101~
+NM1*IL*1*nancy*smith****34*152239999~
+N3*111*juliacircle~
+N4*dixhills*ny*11746*USA~
+DMG*D8*19730204*F*M~
+HD*030**VIS**ESP~
+DTP*348*D8*20111016~
+
+INS*N*19*030*XN*A*E**FT~
+REF*OF*152239999~
+REF*1L*Blue~
+DTP*336*D8*20070101~
+NM1*IL*1*robert*smith****34*152239999~
+N3*111*juliacircle~
+N4*dixhills*ny*11746*USA~
+DMG*D8*19980502*M*I~
+HD*030**VIS**ECH~
+DTP*348*D8*20111016~
+
+INS*N*19*030*XN*A*E**FT~
+REF*OF*152239999~
+REF*1L*Blue~
+DTP*336*D8*20070101~
+NM1*IL*1*MAC*smith****34*152239999~
+N3*111*juliacircle~
+N4*dixhills*ny*11746*USA~
+DMG*D8*20060106*M*I~
+HD*030**VIS**ECH~
+DTP*348*D8*20111016~
+
+INS*N*19*030*XN*A*E**FT~
+REF*OF*152239999~
+REF*1L*Blue~
+DTP*336*D8*20070101~
+NM1*IL*1*Rebeca*smith****34*152239999~
+N3*111*juliacircle~
+N4*dixhills*ny*11746*USA~
+DMG*D8*20080105*F*I~
+HD*030**VIS**ECH~
+DTP*348*D8*20111016~
+
+
+
+
+

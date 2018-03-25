@@ -1,0 +1,26 @@
+SQL> select * from employees;
+
+    EMP_ID EMP_NAME
+---------- --------------------
+       101 Md.alam
+       102 Md.babu
+       103 Md.shumon
+       104 Md.huda
+       105 Md.rusho
+
+SQL> select substr (EMP_NAME,4,7);
+select substr (EMP_NAME,4,7)
+                           *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> select substr (EMP_NAME,4,7)from employees;
+
+SUBSTR(
+-------
+alam
+babu
+shumon
+huda
+rusho

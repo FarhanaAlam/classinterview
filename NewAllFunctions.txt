@@ -1,0 +1,263 @@
+public static void  getinfo() throws FileNotFoundException {
+	    //public static void main(String [] args)  throws IOException {
+
+	        // The name of the file to open.
+	           String fileName = "C:\\classinterview\\student.txt";
+
+	        // This will reference one line at a time
+	           String line = null;
+
+	 // Scaning the file
+	           Scanner scanFile = new Scanner(new File(fileName));
+
+	 // Making a string array
+	         String[] student = new String[20];
+
+	 //this is counter
+	 int i = 0;
+
+	 //Adding the name into the array
+	        while(scanFile.hasNext())
+	 {
+	  student[i] = scanFile.next();
+	   i++;
+	  
+	 }
+	 
+	 // Printing the array
+	          for( i = 0; i < student.length; i++)
+	 {
+	       System.out.println(student[i]);
+	 }
+	          
+	
+	}
+	}
+	
+		// ===============================================================================
+	
+	 private static final String FILE_NAME = "/tmp/MyFirstExcel.xlsx";
+
+	    public static void readexcel() {
+
+	        try {
+
+	            FileInputStream excelFile = new FileInputStream(new File(FILE_NAME));
+	            Workbook workbook = new HSSFWorkbook(excelFile);
+	            Sheet datatypeSheet = workbook.getSheetAt(0);
+	            Iterator<Row> iterator = datatypeSheet.iterator();
+
+	            while (iterator.hasNext()) {
+
+	                Row currentRow = iterator.next();
+	                Iterator<Cell> cellIterator = currentRow.iterator();
+
+	                while (cellIterator.hasNext()) {
+
+	                    Cell currentCell = cellIterator.next();
+	                    //getCellTypeEnum shown as deprecated for version 3.15
+	                    //getCellTypeEnum ill be renamed to getCellType starting from version 4.0
+	                    if (currentCell.getCellType() == Cell.CELL_TYPE_STRING) {
+	                        System.out.print(currentCell.getStringCellValue() + "--");
+	                    } else if (currentCell.getCellType() == Cell.CELL_TYPE_NUMERIC) {
+	                        System.out.print(currentCell.getNumericCellValue() + "--");
+	                    }
+
+	                }
+	                System.out.println();
+
+	            }
+	        } catch (FileNotFoundException e) {
+	            e.printStackTrace();
+	        } catch (IOException e) {
+	        	
+	        	
+	            e.printStackTrace();
+	        }
+
+	    }
+		
+		---------------------------------------------------
+		
+			public static void writeExcel() throws FileNotFoundException, IOException
+	{
+	
+	
+	   HSSFWorkbook workbook = new HSSFWorkbook();
+	        HSSFSheet sheet = workbook.createSheet("Java Books");
+	         
+	        Object[][] bookData = {
+	                {"Head First Java", "Kathy Serria", 79},
+	                {"Effective Java", "Joshua Bloch", 36},
+	                {"Clean Code", "Robert martin", 42},
+	                {"Thinking in Java", "Bruce Eckel", 35},
+	        };
+	 
+	        int rowCount = 0;
+	         
+	        for (Object[] aBook : bookData) {
+	            Row row = sheet.createRow(++rowCount);
+	             
+	            int columnCount = 0;
+	             
+	            for (Object field : aBook) {
+	                Cell cell = row.createCell(++columnCount);
+	                if (field instanceof String) {
+	                    cell.setCellValue((String) field);
+	                } else if (field instanceof Integer) {
+	                    cell.setCellValue((Integer) field);
+	                }
+	            }
+	             
+	        }
+	         
+	         
+	        try (FileOutputStream outputStream = new FileOutputStream("c:\\classinterview\\JavaBooks.xlsx")) {
+	            workbook.write(outputStream);
+	        }
+	    }
+		
+		
+		
+		public static WebDriver  invokeandverifyur(String url,String exph1value)
+	{
+	
+	
+	System.out.println("Internet Explorer is selected");
+	System.setProperty("webdriver.ie.driver","C:\\classinterview\\IEDriverServer.exe\\");
+	WebDriver driver = new InternetExplorerDriver();
+	driver.get(url);
+	String acth1value = driver.findElement(By.xpath("//h1")).getText(); 
+	System.out.println("h1value=" + acth1value);
+	boolean result=compareString (acth1value,exph1value);
+	System.out.println("result=" + result);
+	if (!result)
+	
+	writereport(Msg);
+	return driver;
+	
+	}
+	
+	-----------------------------------------------------
+	
+	
+	
+	
+	public static void   getallLinks(String url)
+	{
+	System.setProperty("webdriver.ie.driver","C:\\classinterview\\IEDriverServer.exe\\");
+
+	WebDriver driver = new InternetExplorerDriver();
+	driver.get(url);
+	java.util.List<WebElement> links = driver.findElements(By.tagName("a"));
+	 
+	System.out.println(links.size());
+
+	for (int i = 1; i<=links.size(); i=i+1)
+
+	{
+
+	System.out.println(links.get(i).getText());
+
+	}
+	}
+	
+	-----------------------------------------------------------------------
+	
+		public static boolean  compareString(String str1,String str2)
+	{
+	
+	
+	System.out.println(str1 + "=" + str1.length() +"="  + str2 + "=" + str2.length());
+	
+	if (str1.equalsIgnoreCase(str2 ) )
+	return true;
+	else
+	return false;
+	
+	}
+	
+
+	public static String GetInputInfo( String Filenm,String env) throws IOException
+    {
+	
+	
+     Properties  prop = new Properties();
+    
+     FileInputStream input = new FileInputStream(Filenm);
+     prop.load(input);
+     String puserid=prop.getProperty("userid");
+     String ppassword=prop.getProperty("password");
+     String ph1=prop.getProperty("H1");
+     String purl=prop.getProperty("url");
+     String retrec=puserid + "," + ppassword + "," + ph1  + "," + purl ;
+     return retrec;
+     
+       }
+	   
+	   
+	  public static void populatescreen (WebDriver driver,String pstid)
+	
+	{
+	
+	
+	driver.findElement(By.id("stno")).sendKeys(pstid);
+	driver.findElement(By.id("subbtn")).click();
+	
+	
+	}
+	
+	
+	---------------------------------------------------------------------
+	
+	
+	public static int readdb( String dbConnectionURL,String usernm,String password,String sqlQuery) throws Exception
+	{
+	ResultSet rs=null ;
+	Statement statement=null;
+	Connection cn=null;
+	int i=0;
+	try {
+	Driver driver = new oracle.jdbc.OracleDriver();
+	DriverManager.registerDriver(driver);
+
+	// Create a connection from the Driver Manager.
+	 cn = DriverManager.getConnection(dbConnectionURL, usernm, password);
+	// Open a statement and run the query fetching a resultset
+	 statement  = cn.createStatement();
+	 rs = statement.executeQuery(sqlQuery);
+
+	
+	while (rs.next()) {
+	
+	//	Map<String, String> recordVal = new HashMap<String, String>();
+	System.out.println("Checking columns value : " + rs.getString(2));
+	//recordVal.put("x"+i, rs.getString(1));
+	i++;
+	}
+	
+} catch (SQLException sqlEx) {
+	System.out.println("Below SQL exception happened while connecting and executing sqlQuery to Database.");
+	System.out.println(sqlEx.getStackTrace());
+	System.out.println(sqlEx);
+	sqlEx.printStackTrace();
+	throw sqlEx;
+} catch (Exception ex) {
+	System.out.println("Below exception happened while connecting and executing sqlQuery to Database.");
+	System.out.println(ex.getStackTrace());
+	System.out.println(ex);
+	ex.printStackTrace();
+	throw ex;
+} finally {
+	if (rs != null)
+	rs.close();
+	if (statement != null)
+	statement.close();
+	if (cn != null)
+	cn.close();
+}
+	return i;
+	
+}
+
+	

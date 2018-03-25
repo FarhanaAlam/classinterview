@@ -1,0 +1,13 @@
+student.data
+
+stuno   stunm
+101	akash
+102	babu
+103 	bony
+104	collins
+105	popy
+106	luna
+107	aman
+108	huda
+109	alam
+110	nazmun

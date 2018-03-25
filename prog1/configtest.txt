@@ -1,0 +1,6 @@
+
+propFileName="C:\\test\\config.properties"
+excel="C:\\test\\tc.xls"
+
+
+

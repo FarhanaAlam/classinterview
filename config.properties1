@@ -1,0 +1,11 @@
+userid = project
+password = project
+url ="http//localhost:8080/FTF/custadd.html"
+table = customerAdd
+H1 = Customer ADD Screen
+custno = 2
+custnm = Farhana
+cust_join_date = 11-jan-2018
+custemail = farhanaalam@gmail.com
+cust_local_status = A
+

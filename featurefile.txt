@@ -1,0 +1,21 @@
+Feature:  Add Customer 
+
+Scenario Outline:
+
+Given the Config file "config.properties"
+ Given I am in "http://localhost:8081/FTF/.html"  page 
+ When I type "<custno>""<custnm>""<cust_join_date>""<custemail>""<cust_local_status>"
+ And click on Process button
+ Then it should add only Active and 2018 customer
+ 
+Examples:
+
+|custno|custnm  |cust_join_date |custemail	       |cust_local_status 
+			
+|2     |Farhana | 11-jan-18	| farhanaalam@gmail.com |   A
+|3     |Alam	| 12-jan-18	| alam@gmail.com        |   A	
+|4     |Popy	| 15-jan-18	| popyalam@gmail.com    |   A
+|5     |Najmun	| 17-jan-18	| najmun@gmail.com      |   A
+|6     |Shumon	| 20-jan-18	| shumon@gmail.com      |   A
+
+
